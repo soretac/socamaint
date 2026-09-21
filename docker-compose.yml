@@ -1,0 +1,28 @@
+name: socamaint-apps
+
+services:
+
+  app:
+    
+    image: socamaint-image
+    container_name: socamaint-container
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+  
+  db:
+    image: postgres:17
+    container_name: socamaint-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Repentance
+      POSTGRES_DB: SocamaintAppDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+volumes:
+  postgres_data:
