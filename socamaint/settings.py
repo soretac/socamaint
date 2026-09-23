@@ -120,23 +120,37 @@ WSGI_APPLICATION = 'socamaint.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django_tenants.postgresql_backend',
-#         'NAME': 'SocamaintAppDB',
-#         'USER': 'postgres',
-#         'HOST': 'localhost',
-#         'PASSWORD': 'Repentance',
-#         'PORT': '5432',
-#     }
-# }
+DATABASE_URL = os.getenv("DATABASE_URL") 
+  
+if DATABASE_URL is not None: 
+    DATABASES = {"default": DATABASE_URL} 
+else: 
+    # Default to sqlite for simplicity in development 
+    DATABASES = { 
+        "default": { 
+            "ENGINE": "django_tenants.postgresql_backend", 
+            "NAME": "SocamaintAppDB", 
+        } 
+    } 
 
 
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'),conn_max_age=600, 
-        ssl_require=True),
-    'ENGINE': 'django.db.backends.postgresql',
+    'default': {
+        'ENGINE': 'django_tenants.postgresql_backend',
+        'NAME': 'SocamaintAppDB',
+        'USER': 'postgres',
+        'HOST': 'localhost',
+        'PASSWORD': 'Repentance',
+        'PORT': '5432',
+    }
 }
+
+
+# DATABASES = {
+#     'default': dj_database_url.parse(config('DATABASE_URL'),conn_max_age=600, 
+#         ssl_require=True),
+#     'ENGINE': 'django.db.backends.postgresql',
+# }
 
 
 # Password validation
