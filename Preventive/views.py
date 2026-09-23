@@ -18,7 +18,7 @@ from django.shortcuts import get_object_or_404
 
 # </head>
 
-class CompteurViews(CreateAPIView):
+class CompteurViews(ModelViewSet):
     serializer_class = CompteurSerializer
     queryset = Compteur.objects.all()
 
