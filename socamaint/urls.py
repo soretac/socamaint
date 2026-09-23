@@ -31,7 +31,7 @@ urlpatterns = [
     path('import-suiviep', ImportSuiviEP.as_view(), name="import-suiviep"),
 
 
-    path('create-compteur', CompteurViews.as_view(), name="create-compteur"),
+    # path('create-compteur', CompteurViews.as_view(), name="create-compteur"),
 
 
 ] + router.urls + engin_router.urls
